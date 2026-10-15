@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiroo AI - Asisten Cerdas Anda</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">
+      <div class="logo-icon">K</div>
+      <div class="logo-text">Kiroo<span>Ai</span></div>
+    </div>
+  </div>
+
+  <div class="sidebar-content">
+    <button class="new-chat-btn" onclick="newChat()">
+      <i data-lucide="plus"></i>
+      Obrolan Baru
+    </button>
+
+    <div class="sidebar-section-title">Hari Ini</div>
+    <div class="chat-item active">
+      <i data-lucide="message-square"></i>
+      <span>Selamat datang di Kiroo</span>
+    </div>
+
+    <div class="sidebar-section-title">Minggu Ini</div>
+    <div class="chat-item">
+      <i data-lucide="message-square"></i>
+      <span>Ide konten media sosial</span>
+    </div>
+    <div class="chat-item">
+      <i data-lucide="message-square"></i>
+      <span>Bantu debug kode Python</span>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">U</div>
+      <div class="user-info">
+        <div class="user-name">Pengguna</div>
+        <div class="user-plan">Kiroo Pro</div>
+      </div>
+      <i data-lucide="more-vertical" class="user-more"></i>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <header class="topbar">
+    <button class="toggle-btn" onclick="toggleSidebar()">
+      <i data-lucide="menu"></i>
+    </button>
+
+    <div class="topbar-title">
+      Kiroo AI
+      <span class="model-badge">Model Kiroo</span>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="icon-btn" title="Bagikan">
+        <i data-lucide="share-2"></i>
+      </button>
+      <button class="icon-btn" title="Pengaturan">
+        <i data-lucide="settings"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="content-wrapper">
+    <!-- CHAT COLUMN -->
+    <div class="chat-container">
+      <div class="chat-area" id="chatArea">
+        <div class="welcome" id="welcome">
+          <div class="welcome-logo">K</div>
+          <h1>Halo, saya Kiroo AI</h1>
+          <p>Asisten cerdas yang siap membantu Anda menulis, coding, membuat website, dan menjawab pertanyaan apa pun.</p>
+
+          <div class="suggestions">
+            <div class="suggestion-card" onclick="sendSuggestion('Buatkan saya game snake sederhana pakai HTML')">
+              <i data-lucide="gamepad-2" class="suggestion-icon"></i>
+              <div class="suggestion-title">Bikin game HTML</div>
+              <div class="suggestion-desc">Preview langsung di Artifact</div>
+            </div>
+            <div class="suggestion-card" onclick="sendSuggestion('Buatkan landing page modern dengan tema biru')">
+              <i data-lucide="layout-template" class="suggestion-icon"></i>
+              <div class="suggestion-title">Buat landing page</div>
+              <div class="suggestion-desc">Website langsung jadi</div>
+            </div>
+            <div class="suggestion-card" onclick="sendSuggestion('Jelaskan cara kerja machine learning dengan bahasa sederhana')">
+              <i data-lucide="brain" class="suggestion-icon"></i>
+              <div class="suggestion-title">Belajar hal baru</div>
+              <div class="suggestion-desc">Konsep rumit jadi mudah</div>
+            </div>
+            <div class="suggestion-card" onclick="sendSuggestion('Tuliskan fungsi JavaScript untuk sorting array of objects')">
+              <i data-lucide="code-2" class="suggestion-icon"></i>
+              <div class="suggestion-title">Bantu coding</div>
+              <div class="suggestion-desc">Debug & tulis kode</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="messages" id="messages" style="display:none;"></div>
+      </div>
+
+      <div class="input-area">
+        <div class="input-wrapper">
+          <textarea id="userInput" placeholder="Tanyakan apa saja ke Kiroo AI..." rows="1"></textarea>
+          <div class="input-actions">
+            <button class="attach-btn" title="Lampirkan file">
+              <i data-lucide="paperclip"></i>
+            </button>
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()" disabled>
+              <i data-lucide="arrow-up"></i>
+            </button>
+          </div>
+        </div>
+        <div class="input-footer">
+          Kiroo AI dapat membuat kesalahan. Mohon periksa informasi penting.
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTIFACT PANEL -->
+    <aside class="artifact-panel" id="artifactPanel">
+      <div class="artifact-header">
+        <div class="artifact-title">
+          <i data-lucide="code-xml"></i>
+          <span id="artifactTitle">Artifact</span>
+        </div>
+        <div class="artifact-actions">
+          <button class="icon-btn" onclick="refreshArtifact()" title="Refresh">
+            <i data-lucide="rotate-cw"></i>
+          </button>
+          <button class="icon-btn" onclick="openArtifactNewTab()" title="Buka di tab baru">
+            <i data-lucide="external-link"></i>
+          </button>
+          <button class="icon-btn" onclick="closeArtifact()" title="Tutup">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+      </div>
+      <div class="artifact-body">
+        <iframe id="artifactFrame" sandbox="allow-scripts allow-same-origin allow-modals allow-forms allow-popups"></iframe>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
