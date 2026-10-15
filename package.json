@@ -1,0 +1,18 @@
+{
+  "name": "kiroo-ai",
+  "version": "1.0.0",
+  "description": "Kiroo AI - Chatbot AI dengan tema putih-biru, artifact preview, dan OpenRouter API",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["ai", "chatbot", "openrouter", "deepseek"],
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  }
+}
